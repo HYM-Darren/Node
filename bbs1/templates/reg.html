@@ -1,0 +1,293 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>用户注册 - 10分钟学院</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index/css/style.css') }}" />
+{#    <script type="text/javascript" src="/index/js/jquery.js"></script>#}
+{#    <script type="text/javascript" src="/index/js/bootstrap.js"></script>#}
+	</head>
+
+<body>
+<!--TOP start-->
+<div id="toptb" class="cl">
+	<div class="wp">
+		<div class="z"><a href="javascript:;" onclick="setHomepage('http://www.phpxy.com/')" >设为首页</a><a href="javascript:;" onclick="window.external.AddFavorite(location.href,document.title);return false;">收藏本站</a></div>
+	</div>
+</div>
+<script>
+function setHomepage(sURL) {
+	
+		document.body.style.behavior = 'url(#default#homepage)';
+		document.body.setHomePage(sURL);
+	
+}             
+</script><!--TOP end-->
+
+<!--HEAD start-->
+<div id="hd">
+	<div class="wp">
+		<div class="hdc cl">
+			<h2><a href="./" title="用户注册 - 10分钟学院"><img src="/public/images/logo.jpg" height="80" border="0" /></a></h2>
+											<form method="post" autocomplete="off" id="lsform" action="login.php">
+				<div class="fastlg cl">
+					<div class="y pns">
+						<table cellspacing="0" cellpadding="0">
+							<tr>
+								<td><p class="ftid">用户名</p></td>
+								<td><input type="text" name="username" value="admin" id="ls_username" autocomplete="off" class="px vm" /></td>
+								<td class="fastlg_l">
+									<label for="ls_cookietime"><input type="checkbox" name="cookietime" id="ls_cookietime" class="pc" value="true" />自动登录</label>
+								</td>
+								<td>&nbsp;<a href="getpass.php">找回密码</a></td>
+							</tr>
+							<tr>
+								<td><label for="ls_password" class="z psw_w">密码</label></td>
+								<td><input type="password" name="password" id="ls_password" class="px vm" autocomplete="off" /></td>
+								<td class="fastlg_l"><button type="submit" class="pn vm" name="loginsubmit" value="true" style="width:75px;"><em>登录</em></button></td>
+								<td>&nbsp;<a href="reg.php" class="xi2 xw1">立即注册</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				</form>
+									</div>
+	
+		<div id="nv">
+			 <ul>
+                <li class="a" id="mn_forum"><a href="{{ url_for('bbs.index') }}" hidefocus="true"
+                                               title="10分钟学院">首页</a><span>10分钟学院</span></li>
+                {% for dbk in allBk %}
+                    <li id="mn_home"><a href="{{ url_for('bbs.index', cid=dbk.id) }}" hidefocus="true"
+                                        title="Space">{{ dbk.classname }}</a></li>
+
+                {% endfor %}
+            </ul>
+		</div>
+		
+		<div id="scbar" class="cl">
+			<form id="scbar_form" method="get" autocomplete="off" action="search.php" target="_blank">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="scbar_icon_td"></td>
+					<td class="scbar_txt_td"><input type="text" name="keywords" id="scbar_txt" onfocus="if(this.value=='请输入搜索内容'){this.value='';this.style.color='#666';}" onblur="if(this.value==''){this.value='请输入搜索内容';this.style.color='#ccc';}" value="请输入搜索内容" style="color:#CCCCCC" autocomplete="off" /></td>
+					<td class="scbar_btn_td">
+						<button type="submit" name="searchsubmit" id="scbar_btn" class="pn pnc" value="true"><strong class="xi2 xs2">搜索</strong></button>
+					</td>
+					<td class="scbar_hot_td">
+						<div id="scbar_hot">
+							<strong class="xw1">热搜: </strong>
+														<a href="search.php?keywords=活动" target="_blank" class="xi2">活动</a>
+														<a href="search.php?keywords=交友" target="_blank" class="xi2">交友</a>
+														<a href="search.php?keywords=教程" target="_blank" class="xi2">教程</a>
+													</div>
+					</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<!--HEAD end-->
+
+<!--REG START-->
+<div id="wp" class="wp">
+	<div id="ct" class="ptm wp cl">
+		<div class="mn">
+			<div class="bm" id="main_message">
+				<div class="bm_h bbs" id="main_hnav">
+					<h3 id="layer_reginfo_t" class="xs2">立即注册</h3>
+				</div>
+				<p id="returnmessage4"></p>
+				<form method="post" autocomplete="off" name="register" id="registerform" action="">
+					<div id="layer_reg" class="bm_c">
+						<div class="mtw">
+							<div id="abcd">
+								<div class="rfm">
+									<table>
+										<tr>
+											<th><span class="rq">*</span><label for="5sMVeV">用户名:</label></th>
+											<td><input type="text" id="5sMVeV" onblur="checkRegOut('5sMVeV','请输入用户名');" onfocus="checkReg('5sMVeV')" name="username" class="px" autocomplete="off" size="25" maxlength="15"/></td>
+											<td class="tipcol"><i id="tip_5sMVeV" class="p_tip">用户名由 3 到 12 个字符组成</i></td>
+										</tr>
+									</table>
+								</div>
+								<div class="rfm">
+									<table>
+										<tr>
+											<th><span class="rq">*</span><label for="WXETc3">密码:</label></th>
+											<td><input type="password" id="WXETc3" onblur="checkRegOut('WXETc3','请输入密码');" onfocus="checkReg('WXETc3')" name="password" size="25" class="px" /></td>
+											<td class="tipcol"><i id="tip_WXETc3" class="p_tip">请填写密码,由 3 到 12 个字符组成</i></td>
+										</tr>
+									</table>
+								</div>
+								<div class="rfm">
+									<table>
+										<tr>
+											<th><span class="rq">*</span><label for="LzI33d">确认密码:</label></th>
+											<td><input type="password" id="LzI33d" onblur="checkRegOut('LzI33d','请确认密码');" onfocus="checkReg('LzI33d')" name="repassword" size="25" class="px" /></td>
+											<td class="tipcol"><i id="tip_LzI33d" class="p_tip">请再次输入密码</i></td>
+										</tr>
+									</table>
+								</div>
+								<div class="rfm">
+									<table>
+										<tr>
+											<th><span class="rq">*</span><label for="FQ817D">Email:</label></th>
+											<td><input type="text" id="FQ817D" name="email"  onblur="checkRegOut('FQ817D','请输入正确的邮箱地址');" onfocus="checkReg('FQ817D')" size="25" class="px" /><br /><em id="emailmore">&nbsp;</em></td>
+											<td class="tipcol"><i id="tip_FQ817D" class="p_tip">请输入正确的邮箱地址</i></td>
+										</tr>
+									</table>
+								</div>
+								<div class="rfm">
+									<table action="/check">
+										<tr>
+											<th><span class="rq">*</span><label for="yzm">验证码:</label></th>
+											<td><input style="width:50px;" maxlength="4" type="text" id="yzm" name="yzm" onfocus="checkReg('yzm')" size="25" class="px" /><br /><em id="emailmore">&nbsp;</em></td>
+											<td class="tipcol"><i id="tip_yzm" class="p_tip"><img src="/yzm/" id="p_yzm" onclick="show('p_yzm')" style="cursor:pointer" /> <a href="javascript:;" onclick="show('p_yzm')">看不清？</a></i></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="layer_reginfo_b">
+						<div class="rfm mbw bw0">
+							<table width="100%">
+								<tr>
+									<th>&nbsp;</th>
+									<td>
+									<p id="reginfo_a_btn">
+									<em>&nbsp;</em>
+									<button class="pn pnc" id="btn" type="submit" name="regsubmit" value="true">
+										<strong>提交</strong>
+									</button>
+									</p>
+									</td>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function checkReg(obj){
+	document.getElementById('tip_'+obj).style.display='block';
+}
+
+function checkRegOut(obj,test){
+	if(document.getElementById(obj).value==''){
+		document.getElementById('tip_'+obj).innerHTML='<b style="color:red;">'+test+'</b>';
+	}else{
+		document.getElementById('tip_'+obj).style.display='none';
+	}
+}
+
+function show(obj){
+	document.getElementById(obj).src='verify.php?math='+Math.random();
+}
+</script>
+<!--REG END-->
+
+<!--FOOT start-->
+<div id="ft" class="wp cl">
+	<div id="flk" class="y">
+		<p>
+		<a href="#" >京ICP备 89273号</a><p class="pipe">|</p><strong><a href="http://www.phpxy.com/" target="_blank">phpxy</a></strong>
+		</p>
+		<p class="xs0">
+				</p>
+	</div>
+	<div id="frt">
+		<p>Powered by <strong><a href="http://www.phpxy.com/" target="_blank">phpxy</a></strong> <em>V2</em></p>
+		<p class="xs0">&copy; 2019 <a href="http://www.phpxy.com/" target="_blank">phpxy Inc.</a></p>
+	</div>
+</div><!--FOOT end-->
+</body>
+</html>
+<script>
+   function NameLong(str){ return /^\w{3,12}$/.test(str);}
+            if(!NameLong(oInput[4].value)){
+                alert('用户名由 3 到 12 个字符组成,并且只能包含数字字母下划线');
+                return false
+            }
+            {#判断密码规则#}
+            function PasswordRule(str) { return /^[a-zA-Z0-9_~!@#$%^&*()_+`=';":/.,?><]{3,12}$/.test(str);}
+            if(!PasswordRule(oInput[5].value)){
+                alert('密码必须3到12位');
+                return false
+            }
+{#            判断两次密码是否一致#}
+            if(oInput[5].value != oInput[6].value){
+                alert('两次密码不一致')
+                return false
+            }
+{#            判断邮箱规则#}
+            function EmailRule(str) { return /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/.test(str);}
+            if(!EmailRule(oInput[7].value)){
+                alert('请输入正确的邮箱')
+                return false
+            }
+</script>
+<script>
+        var Text = document.getElementsByClassName('p_tip')
+        var btn = document.getElementById('registerformsubmit')
+        btn.onclick = function (e) {
+            var ev = e || event
+            ev.preventDefault()
+
+            var oInput = document.getElementsByTagName('input')
+            for (var i = 4; i < 9; i++) {
+                if (oInput[i].value == '') {
+                    alert(Text[i-4].innerText);
+                    return false
+                }
+            }
+
+{#            判断用户名规则#}
+            function NameLong(str){ return /^\w{3,12}$/.test(str);}
+            if(!NameLong(oInput[4].value)){
+                alert('用户名由 3 到 12 个字符组成,并且只能包含数字字母下划线');
+                return false
+            }
+{#            判断密码规则#}
+            function PasswordRule(str) { return /^[a-zA-Z0-9_~!@#$%^&*()_+`=';":/.,?><]{3,12}$/.test(str);}
+            if(!PasswordRule(oInput[5].value)){
+                alert('密码必须3到12位');
+                return false
+            }
+{#            判断两次密码是否一致#}
+            if(oInput[5].value != oInput[6].value){
+                alert('两次密码不一致')
+                return false
+            }
+{#            判断邮箱规则#}
+            function EmailRule(str) { return /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/.test(str);}
+{##}        if(!EmailRule(oInput[7].value)){
+                alert('请输入正确的邮箱')
+                return false
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('bbs.register') }}",
+                data: {
+                    'username': oInput[4].value,
+                    'password': oInput[5].value,
+                    'email': oInput[7].value,
+                },
+                success: (function (data) {
+                    alert(data.msg)
+                    if(data['msg'] == '注册成功'){
+                        window.location.href = "{{ url_for('bbs.register') }}"
+                    }
+                })
+            })
+
+    </script>
