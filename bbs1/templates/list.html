@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>PHP框架 - 10分钟学院</title>
+    <title>{{ sname.classname }} - 10分钟学院</title>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index/css/style.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index/css/list.css') }}"/>
@@ -31,14 +31,14 @@
 <div id="hd">
     <div class="wp">
         <div class="hdc cl">
-            <h2><a href="./" title="PHP框架 - 10分钟学院"><img src="{{ url_for('static',filename='index/images/logo.jpg') }}" height="80" border="0"/></a></h2>
+            <h2><a href="./" title="{{ sname.classname }} - 10分钟学院"><img src="{{ url_for('static',filename='index/images/logo.jpg') }}" height="80" border="0"/></a></h2>
             {% if 'username' in session %}
             <div id="um">
                 <div class="avt y"><a href="{{ url_for('bbs.upload_file') }}"><img src="/static/{{ picture }}"/></a></div>
                 <p>
                     <strong class="vwmy"><a href="home.php" target="_blank">{{ session['username'] }}</a></strong>
                     <span class="pipe">|</span><a href="{{ url_for('bbs.home') }}">设置</a>
-                    <span class="pipe">|</span><a href="{{ url_for('bbs.admin') }}" target="_blank">管理中心</a>
+                    <span class="pipe">|</span><a href="{{ url_for('admin.login') }}" target="_blank">管理中心</a>
                     <span class="pipe">|</span><a href="{{ url_for('bbs.delete') }}">退出</a>
                 </p>
                 <p>
@@ -123,9 +123,9 @@
 <div id="wp" class="wp">
     <div id="pt" class="bm cl">
         <div class="z">
-            <a href="./" class="nvhm" title="PHP框架 - 10分钟学院">PHP框架 - 10分钟学院</a><em>&raquo;</em><a
+            <a href="./" class="nvhm" title="{{ sname.classname }} - 10分钟学院">{{ sname.classname }} - 10分钟学院</a><em>&raquo;</em><a
                 href="index.php">论坛</a><em>&raquo;</em><a href="index.php?bigid=1">PHP技术交流</a><em>&raquo;</em><a
-                href="list.php?classid=3">PHP框架</a>
+                href="list.php?classid=3">{{ sname.classname }}</a>
         </div>
     </div>
     <div class="boardnav">
@@ -147,7 +147,7 @@
 																													</dl>
                     {% endif %}
                 {% endfor %}
-
+{##}
 {#								<dl class="a" id="lf_10">#}
 {#						<dt><a href="javascript:;" title=""></a></dt>#}
 
@@ -159,14 +159,14 @@
                 <div class="bm bml pbn">
                     <div class="bm_h cl">
                         <h1 class="xs2">
-                            <a href="list.php?classid=3">PHP框架</a>
+                            <a href="list.php?classid=3">{{ sname.classname }}</a>
                             <span class="xs1 xw0 i">今日: <strong class="xi1">0</strong><span
-                                    class="pipe">|</span>主题: <strong class="xi1">0</strong></span></h1>
+                                    class="pipe">|</span>主题: <strong class="xi1">{{ sunm }}</strong></span></h1>
                     </div>
                     <div class="bm_c cl pbn">
 
                         <div>
-                            版主: <span class="xi2">test002</span>
+                            版主: <span class="xi2">开源小码</span>
                         </div>
 
                     </div>
@@ -193,6 +193,7 @@
                             </tr>
                         </table>
                     </div>
+
                     <div class="bm_c">
                         {% for dt in dtitle %}
                         <form method="post" autocomplete="off" name="moderate" id="moderate" action="">
@@ -202,8 +203,11 @@
 							<a href="detail.php?id=9" title="新窗口打开" target="_blank"><img src="/static/index/images/folder_common.gif" /></a>
 							</td>
 							<th class="common">
-							 <a href="{{ url_for('bbs.detail') }}" class="xst"  style="color:red">{{ dt.content }}</a>
-							 							 							 <img src="/static/images/digest_1.gif" align="absmiddle" alt="" title="精华帖" />
+							 <a href="{{ url_for('bbs.detail',cid=dt.id )}}" class="xst"  style="color:red">{{ dt.content }}</a>
+
+		{% if dt.elite == 1 %}				 							 							 <img src="/static/index/images/digest_1.gif" align="absmiddle" alt="" title="精华帖" />
+        {% endif %}
+
 							 							 							</th>
 							<td class="by">
 							<cite></cite>
@@ -224,6 +228,17 @@
                     </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
                 <div class="bm bw0 pgs cl">
                     <span class="pgb y"><a href="index.php">返&nbsp;回</a></span>
                     <a href="{{ url_for('bbs.addc') }}" id="newspecialtmp" title="发新帖"><img src="/static/index/images/pn_post.png"
@@ -235,6 +250,25 @@
                                                                            onclick="javascript:var page=(this.previousSibling.value>0)?0:this.previousSibling.value;location='/list.php?classid=3&page='+page+''">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;<a
                         href='/list.php?classid=3&page=2'>下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                         href='/list.php?classid=3&page=0'>尾 页</a>&nbsp;&nbsp;&nbsp;&nbsp;共有<b>0</b>条记录&nbsp;&nbsp;&nbsp;&nbsp;每页显示<b>10</b>条，本页<b>1-0</b>条&nbsp;&nbsp;&nbsp;&nbsp;<b>1/0</b>页&nbsp;&nbsp;
+         </div>
+</table>
+</body>
+</html>
+{#<script>#}
+{#    function get_page(_this) {#}
+{#        if (event.keyCode == 13) {#}
+{#            var page = (_this.value > 5) ? 5 : _this.value;#}
+{##}
+{#            location = '{{ url_for('bbs.list_forum') }}?page=' + page + ''#}
+{#        }#}
+{#    }#}
+{##}
+{#    function process(_this) {#}
+{#        var page = (_this.previousSibling.value > 5) ? 5 : _this.previousSibling.value;#}
+{#        location = '{{ url_for('bbs.list_forum') }}?page=' + page + ''#}
+{##}
+{#    }#}
+{#</script>#}
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
 		<div class="mn">
 		<div class="bm bw0">
 		<p class="bbda pbm mbm">您必须填写旧密码才能修改下面的资料</p>
-		<form action="" method="post" autocomplete="off">
+		<form action="{{ url_for('bbs.home_pass')}}" method="post" autocomplete="off">
 			<table summary="个人资料" cellspacing="0" cellpadding="0" class="tfm">
 			<tr>
 			<th><span class="rq" title="必填">*</span>旧密码</th>

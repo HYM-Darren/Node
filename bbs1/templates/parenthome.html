@@ -7,6 +7,8 @@
     {% endblock title %}
     {% block link %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index/css/style.css') }}" />
+
+
     {% endblock link %}
 
 
@@ -35,7 +37,7 @@ function setHomepage(sURL) {
 					<p>
 					<strong class="vwmy"><a href="home.php" target="_blank">{{ session['username'] }}</a></strong>
 					<span class="pipe">|</span><a href="{{ url_for('bbs.home') }}">设置</a>
-										<span class="pipe">|</span><a href="{{ url_for('bbs.admin') }}" target="_blank">管理中心</a>
+										<span class="pipe">|</span><a href="{{ url_for('admin.login') }}" target="_blank">管理中心</a>
 										<span class="pipe">|</span><a href="logout.php">退出</a>
 					</p>
 					<p>

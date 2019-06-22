@@ -19,7 +19,10 @@ db.init_app(app)
 manager = Manager(app)
 
 from App.view import bbs
+from Admin.view import admin
+
 app.register_blueprint(bbs)
+app.register_blueprint(admin)
 if __name__ == '__main__':
     # app.run()
     manager.run()

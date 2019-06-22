@@ -67,8 +67,8 @@ class User(db.Model,DBBase):
     # @password.setter
     # def password(self,value):
     #     return generate_password_hash(value)
-    def validate_password(self,password):
-        return check_password_hash(self.__password,password)
+    # def validate_password(self,password):
+    #     return check_password_hash(self.__password,password)
 
 class Details(db.Model,DBBase):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

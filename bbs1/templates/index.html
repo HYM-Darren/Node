@@ -35,12 +35,12 @@
         <div class="hdc cl">
             <h2><a href="./" title="首页 - 10分钟学院"><img src="{{ url_for('static',filename='index/images/logo.jpg') }}" height="80" border="0"/></a></h2>
            {% if 'username' in session %}
-            <div id="um">
+  guanli          <div id="um">
                 <div class="avt y"><a href="{{ url_for('bbs.upload_file') }}"><img src="/static/{{ picture }}"/></a></div>
                 <p>
                     <strong class="vwmy"><a href="home.php" target="_blank">{{ session['username'] }}</a></strong>
                     <span class="pipe">|</span><a href="{{ url_for('bbs.home') }}">设置</a>
-                    <span class="pipe">|</span><a href="{{ url_for('bbs.admin') }}" target="_blank">管理中心</a>
+                    <span class="pipe">|</span><a href="{{ url_for('admin.login') }}" target="_blank">管理中心</a>
                     <span class="pipe">|</span><a href="{{ url_for('bbs.delete') }}">退出</a>
                 </p>
                 <p>
@@ -168,7 +168,7 @@
                                                 </td>
                                                 <td class="fl_by">
                                                     <div>
-                                                        <a href="detail.php?id=31" class="xi2">{{ small.lastpost }}</a> <cite><span
+                                                        <a href="{{ url_for('bbs.detail',cid= small.id ) }}" class="xi2">{{ small.lastpost }}</a> <cite><span
                                                             title="2019-06-11">1天前</span> admin</cite></div>
                                                 </td>
                                             </tr>

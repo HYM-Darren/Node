@@ -94,53 +94,77 @@ function setHomepage(sURL) {
 
 <!--REG START-->
 <div id="wp" class="wp">
-	<div id="ct" class="ptm wp cl">
-		<div class="mn">
-			<div class="bm" id="main_message">
-				<div class="bm_h bbs" id="main_hnav">
-					<h3 id="layer_reginfo_t" class="xs2">立即注册</h3>
-				</div>
-				<p id="returnmessage4"></p>
-				<form method="post" autocomplete="off" name="register" id="registerform" action="">
-					<div id="layer_reg" class="bm_c">
-						<div class="mtw">
-							<div id="abcd">
-								<div class="rfm">
-									<table>
-										<tr>
-											<th><span class="rq">*</span><label for="5sMVeV">用户名:</label></th>
-											<td><input type="text" id="5sMVeV" onblur="checkRegOut('5sMVeV','请输入用户名');" onfocus="checkReg('5sMVeV')" name="username" class="px" autocomplete="off" size="25" maxlength="15"/></td>
-											<td class="tipcol"><i id="tip_5sMVeV" class="p_tip">用户名由 3 到 12 个字符组成</i></td>
-										</tr>
-									</table>
-								</div>
-								<div class="rfm">
-									<table>
-										<tr>
-											<th><span class="rq">*</span><label for="WXETc3">密码:</label></th>
-											<td><input type="password" id="WXETc3" onblur="checkRegOut('WXETc3','请输入密码');" onfocus="checkReg('WXETc3')" name="password" size="25" class="px" /></td>
-											<td class="tipcol"><i id="tip_WXETc3" class="p_tip">请填写密码,由 3 到 12 个字符组成</i></td>
-										</tr>
-									</table>
-								</div>
-								<div class="rfm">
-									<table>
-										<tr>
-											<th><span class="rq">*</span><label for="LzI33d">确认密码:</label></th>
-											<td><input type="password" id="LzI33d" onblur="checkRegOut('LzI33d','请确认密码');" onfocus="checkReg('LzI33d')" name="repassword" size="25" class="px" /></td>
-											<td class="tipcol"><i id="tip_LzI33d" class="p_tip">请再次输入密码</i></td>
-										</tr>
-									</table>
-								</div>
-								<div class="rfm">
-									<table>
-										<tr>
-											<th><span class="rq">*</span><label for="FQ817D">Email:</label></th>
-											<td><input type="text" id="FQ817D" name="email"  onblur="checkRegOut('FQ817D','请输入正确的邮箱地址');" onfocus="checkReg('FQ817D')" size="25" class="px" /><br /><em id="emailmore">&nbsp;</em></td>
-											<td class="tipcol"><i id="tip_FQ817D" class="p_tip">请输入正确的邮箱地址</i></td>
-										</tr>
-									</table>
-								</div>
+        <div id="ct" class="ptm wp cl">
+            <div class="mn">
+                <div class="bm" id="main_message">
+                    <div class="bm_h bbs" id="main_hnav">
+                        <h3 id="layer_reginfo_t" class="xs2">立即注册</h3>
+                    </div>
+                    <p id="returnmessage4"></p>
+                    <form method="post" name="register" id="registerform" action="{{ url_for('bbs.register') }}">
+                    {{ form.csrf_token }}
+                        <div id="layer_reg" class="bm_c">
+                            <div class="mtw">
+                                <div id="reginfo_a">
+                                    <div class="rfm">
+                                        <table>
+                                            <tr>
+                                                <th><span class="rq">*</span><label for="5sMVeV">{{ form.username.label }}</label></th>
+                                                <td>
+                                                    {{ form.username(placeholder="请输入用户名") }}
+                                                    {% for error in form.username.errors %}
+                                                        <span style="color: red">{{ error }}</span>
+                                                    {% endfor %}
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                     <div class="rfm">
+                                        <table>
+                                            <tr>
+                                                <th><span class="rq">*</span><label for="5sMVeV">{{ form.password.label }}</label></th>
+                                                <td>
+                                                    {{ form.password() }}
+                                                    {% for error in form.password.errors %}
+                                                        <span style="color: red">{{ error }}</span>
+                                                    {% endfor %}
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="rfm">
+                                        <table>
+                                            <tr>
+                                                <th><span class="rq">*</span><label for="5sMVeV">{{ form.confirm.label }}</label></th>
+                                                <td>
+                                                    {{ form.confirm() }}
+                                                    {% for error in form.confirm.errors %}
+                                                        <span style="color: red">{{ error }}</span>
+                                                    {% endfor %}
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="rfm">
+                                        <table>
+                                            <tr>
+                                                <th><span class="rq">*</span><label for="5sMVeV">{{ form.email.label }}</label></th>
+                                                <td>
+                                                    {{ form.email() }}
+                                                    {% for error in form.email.errors %}
+                                                        <span style="color: red">{{ error }}</span>
+                                                    {% endfor %}
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
 								<div class="rfm">
 									<table action="/check">
 										<tr>
@@ -190,10 +214,10 @@ function checkRegOut(obj,test){
 }
 
 function show(obj){
-	document.getElementById(obj).src='verify.php?math='+Math.random();
+	document.getElementById(obj).src='/yzm?math='+Math.random();
 }
 </script>
-<!--REG END-->
+
 
 <!--FOOT start-->
 <div id="ft" class="wp cl">
@@ -211,83 +235,3 @@ function show(obj){
 </div><!--FOOT end-->
 </body>
 </html>
-<script>
-   function NameLong(str){ return /^\w{3,12}$/.test(str);}
-            if(!NameLong(oInput[4].value)){
-                alert('用户名由 3 到 12 个字符组成,并且只能包含数字字母下划线');
-                return false
-            }
-            {#判断密码规则#}
-            function PasswordRule(str) { return /^[a-zA-Z0-9_~!@#$%^&*()_+`=';":/.,?><]{3,12}$/.test(str);}
-            if(!PasswordRule(oInput[5].value)){
-                alert('密码必须3到12位');
-                return false
-            }
-{#            判断两次密码是否一致#}
-            if(oInput[5].value != oInput[6].value){
-                alert('两次密码不一致')
-                return false
-            }
-{#            判断邮箱规则#}
-            function EmailRule(str) { return /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/.test(str);}
-            if(!EmailRule(oInput[7].value)){
-                alert('请输入正确的邮箱')
-                return false
-            }
-</script>
-<script>
-        var Text = document.getElementsByClassName('p_tip')
-        var btn = document.getElementById('registerformsubmit')
-        btn.onclick = function (e) {
-            var ev = e || event
-            ev.preventDefault()
-
-            var oInput = document.getElementsByTagName('input')
-            for (var i = 4; i < 9; i++) {
-                if (oInput[i].value == '') {
-                    alert(Text[i-4].innerText);
-                    return false
-                }
-            }
-
-{#            判断用户名规则#}
-            function NameLong(str){ return /^\w{3,12}$/.test(str);}
-            if(!NameLong(oInput[4].value)){
-                alert('用户名由 3 到 12 个字符组成,并且只能包含数字字母下划线');
-                return false
-            }
-{#            判断密码规则#}
-            function PasswordRule(str) { return /^[a-zA-Z0-9_~!@#$%^&*()_+`=';":/.,?><]{3,12}$/.test(str);}
-            if(!PasswordRule(oInput[5].value)){
-                alert('密码必须3到12位');
-                return false
-            }
-{#            判断两次密码是否一致#}
-            if(oInput[5].value != oInput[6].value){
-                alert('两次密码不一致')
-                return false
-            }
-{#            判断邮箱规则#}
-            function EmailRule(str) { return /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/.test(str);}
-{##}        if(!EmailRule(oInput[7].value)){
-                alert('请输入正确的邮箱')
-                return false
-            }
-
-            $.ajax({
-                type: 'POST',
-                url: "{{ url_for('bbs.register') }}",
-                data: {
-                    'username': oInput[4].value,
-                    'password': oInput[5].value,
-                    'email': oInput[7].value,
-                },
-                success: (function (data) {
-                    alert(data.msg)
-                    if(data['msg'] == '注册成功'){
-                        window.location.href = "{{ url_for('bbs.register') }}"
-                    }
-                })
-            })
-
-    </script>
